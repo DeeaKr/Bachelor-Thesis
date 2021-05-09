@@ -1,0 +1,35 @@
+<div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+        <!-- <mat-card-header>
+        <mat-card-title>Register</mat-card-title>
+      </mat-card-header> -->
+
+        <div class="example-form" [formGroup]="loginForm">
+
+            <mat-card-content>
+                <mat-form-field class="example-full-width">
+                    <input matInput formControlName="emailCtrl" required placeholder="Email">
+                    <mat-error *ngIf="loginForm.controls.emailCtrl.invalid">Invalid email domain!</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput formControlName="passwordCtrl" required placeholder=""
+                        [type]="hideP ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="hideP = !hideP" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hideP">
+                        <mat-icon>{{hideP ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+
+            </mat-card-content>
+
+            <button (click)="login()" [disabled]="loginForm.invalid" mat-stroked-button color="accent"
+                class="btn-block">Log In</button>
+                <div>
+                    Don't have an account? <a routerLink="/register">Register here. </a>
+                </div>
+
+        </div>
+    </mat-card>
+</div>

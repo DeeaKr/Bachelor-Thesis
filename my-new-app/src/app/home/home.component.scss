@@ -1,0 +1,403 @@
+@import "~@angular/material/theming";
+@import "@material/fab/mdc-fab";
+body,
+html {
+  height: 100%;
+}
+::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
+  background: rgba(0, 255, 255, 0.5);
+}
+::ng-deep.mat-form-field {
+  .mat-input-element {
+    color: white;
+  }
+}
+
+.img {
+  border-radius: 50%;
+  border: 1px solid white;
+  object-fit: cover;
+
+  //centers the image
+  height: 400px;
+  width: 400px;
+}
+.add-photo {
+  position: relative;
+  top: 0px;
+  left: 7%;
+  height: 400px;
+  width: 400px;
+
+  //  overflow: hidden;
+  //  display: flex;
+  //  justify-content: center;
+  //  align-items: center;
+}
+#welcome {
+  // color: white;
+  font-family: "Archivo Black", sans-serif;
+  //font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 30;
+  font-weight: 800;
+  position: absolute;
+  top: 13%;
+  left: 45%;
+  cursor: none;
+}
+.photoC {
+  position: absolute;
+  height: 150px;
+  width: 350px;
+  shape-outside: url("camera.png");
+  top: 30%;
+  left: 77%;
+  filter: brightness(0) invert(1);
+}
+
+#text-upload {
+  //color: white;
+  position: absolute;
+  top: 30%;
+  left: 60%;
+  font-size: 20px;
+}
+#chooseRobot{
+  position: relative;
+  top:50%;
+  left: 50%;
+
+}
+#helloRobot{
+  position: absolute;
+  top:35%;
+  left: 30%;
+}
+#helloRobotPurple{
+  position: relative;
+  top:30%;
+  left: 40%;
+}
+#gotoExamples{
+  position: relative;
+  top:40px;
+  left: 40%;
+  background-color:#3949ab;
+  text-transform: lowercase;
+}
+.examplesButton{
+  font-size: 20px;
+}
+.robot-happy {
+  position: absolute;
+  top: 10%;
+  left: 30%;
+}
+.purpleSad{
+position: relative;
+  top: 10%;
+  left: 55%;
+}
+
+#icon-add-photo2 {
+  font-size: 25px;
+  text-align: center;
+}
+
+#another-photo {
+  position: relative;
+  top: 10px;
+  left: 220px;
+}
+
+.background-container:hover {
+  border: 1px solid white;
+}
+// $config: mat-get-color-config($my-new-app-theme);
+// $accent: map-get($config, accent);
+.background-container {
+  cursor: pointer;
+  // border: 1px solid black ;
+  display: table-cell;
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  // background-color: grey;
+  opacity: 0.8;
+
+  //for background:
+  // background-image: url(http://placekitten.com/400/200);
+  //background: linear-gradient(-60deg, #6c3 25%, #09f 75%);
+
+  background-position: 0px 0px;
+  background-repeat: repeat-x;
+
+  background: linear-gradient(45deg, #6c3, #09f);
+  background-size: 200% 200%;
+  background-position: 0% 100%;
+  animation-name: test_hover;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+  // animation: myfirst 5s ease-in-out infinite alternate;
+  // -webkit-animation: pulsate 20s linear infinite;
+  // -moz-animation: pulsate 20s linear infinite;
+  // animation: pulsate 20s linear infinite;
+  // animation:slide 3s ease-in-out infinite alternate;
+  //animation: animatedBackground 10s linear infinite alternate;
+}
+#icon-add-photo {
+  font-size: 40px;
+  text-align: center;
+  opacity: 1;
+}
+.modal {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 5px;
+  color: #333;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  max-width: 50%;
+  padding: 1rem 2rem;
+  position: absolute;
+  top: 30%;
+  left: 55%;
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .modal {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: #303f9f8a;
+  }
+}
+
+.circular-sb {
+  width: 250px;
+  border: 5px solid #303f9f;
+  padding: 80px 0px;
+  margin: 30px auto;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 900;
+  font-family: arial;
+  position: absolute;
+  color: rgb(230, 230, 230);
+  left: 75%;
+  top: 10%;
+}
+.circle1 {
+  border: 5px solid #303f9f;
+  position: absolute;
+  width: 25px;
+  padding: 20px;
+  border-radius: 50%;
+  left: -10px;
+  bottom: 10px;
+}
+
+.circle1:before {
+  content: "";
+  position: absolute;
+  width: 25px;
+  padding: 20px;
+  border-radius: 50%;
+  right: 0px;
+  bottom: 0px;
+  background: #000;
+}
+
+.circle2 {
+  border: 5px solid #303f9f;
+  position: absolute;
+  width: 5px;
+  padding: 10px 15px;
+  border-radius: 50%;
+  left: -60px;
+  bottom: 5px;
+}
+
+// for background of circle :
+@keyframes test_hover {
+  from {
+    background-position: 0% 100%;
+  }
+  to {
+    background-position: 100% 0%;
+  }
+}
+//text color gradient
+// h1 {
+//   font-family: "Work Sans", sans-serif;
+//   font-weight: 800;
+//   font-size: 5em;
+//   width: 5em;
+//   line-height: 0.9em;
+//   margin-left: auto;
+//   margin-right: auto;
+//   margin-top: 1.5em;
+//   margin-top: calc(50vh - 1em);
+// }
+.gradient-text {
+  /* Fallback: Set a background color. */
+  background-color: #09f;
+
+  /* Create the gradient. */
+  background-image: linear-gradient(
+    45deg,
+    #09f 16.666%,
+    rgba(129, 205, 255, 0.747) 16.666%,
+    #09f 33.333%,
+    rgb(157, 167, 255) 33.333%,
+    rgb(155, 202, 255) 50%,
+    rgb(252, 252, 252) 50%,
+    rgb(98, 151, 250) 66.666%,
+    #d5e7ff 66.666%,
+    #09f 83.333%,
+    rgb(115, 199, 255) 83.333%
+  );
+
+  /* Set the background size and repeat properties. */
+  background-size: 100%;
+  background-repeat: repeat;
+
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+  -webkit-background-clip: text;
+  background-clip: none;
+  -webkit-text-fill-color: transparent;
+
+  /* Animate the text when loading the element. */
+  /* This animates it on page load and when hovering out. */
+  animation: rainbow-text-simple-animation-rev 0.75s ease forwards;
+}
+
+.gradient-text:hover {
+  animation: rainbow-text-simple-animation 0.5s ease-in forwards;
+}
+
+/* Move the background and make it smaller. */
+/* Animation shown when entering the page and after the hover animation. */
+@keyframes rainbow-text-simple-animation-rev {
+  0% {
+    background-size: 650%;
+  }
+  40% {
+    background-size: 650%;
+  }
+  100% {
+    background-size: 100%;
+  }
+}
+
+/* Move the background and make it larger. */
+/* Animation shown when hovering over the text. */
+@keyframes rainbow-text-simple-animation {
+  0% {
+    background-size: 100%;
+  }
+  80% {
+    background-size: 650%;
+  }
+  100% {
+    background-size: 650%;
+  }
+}
+
+/* Style the rainbow text element. */
+//
+/*
+@-webkit-keyframes pulsate {
+  0% { background: linear-gradient(-60deg, #6c3 25%, #09f 75%);}
+  20% {  background: linear-gradient(-60deg, rgb(124, 231, 71) 25%, rgb(77, 184, 255) 75%); }
+  40% { background: linear-gradient(-60deg, rgb(92, 177, 50) 25%, rgb(42, 135, 197) 75%); }
+  60% {  background: linear-gradient(-60deg, rgb(131, 245, 73) 25%, rgb(129, 205, 255) 75%); }
+  80% {  background: linear-gradient(-60deg, #6c3 75%, #09f 25%); }
+  100% {  background: linear-gradient(-60deg, #6c3 25%, #09f 75%); }
+}
+@-moz-keyframes pulsate {
+  0% { background: linear-gradient(-60deg, #6c3 25%, #09f 75%);}
+  20% {  background: linear-gradient(-60deg, rgb(124, 231, 71) 25%, rgb(77, 184, 255) 75%); }
+  40% { background: linear-gradient(-60deg, rgb(92, 177, 50) 25%, rgb(42, 135, 197) 75%); }
+  60% {  background: linear-gradient(-60deg, rgb(131, 245, 73) 25%, rgb(129, 205, 255) 75%); }
+  80% {  background: linear-gradient(-60deg, #6c3 75%, #09f 25%); }
+  100% {  background: linear-gradient(-60deg, #6c3 25%, #09f 75%); }
+}
+@keyframes pulsate {
+  0% { background: linear-gradient(-60deg, #6c3 25%, #09f 75%);}
+  20% {  background: linear-gradient(-60deg, rgb(124, 231, 71) 25%, rgb(77, 184, 255) 75%); }
+  40% { background: linear-gradient(-60deg, rgb(92, 177, 50) 25%, rgb(42, 135, 197) 75%); }
+  60% {  background: linear-gradient(-60deg, rgb(131, 245, 73) 25%, rgb(129, 205, 255) 75%); }
+  80% {  background: linear-gradient(-60deg, #6c3 75%, #09f 25%); }
+  100% {  background: linear-gradient(-60deg, #6c3 25%, #09f 75%); }
+}
+
+@keyframes animatedBackground {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+@keyframes myfirst {
+  0%   { background-image: linear-gradient(-60deg, #6c3 25%, #09f 75%);}
+  25%  {  background-image: linear-gradient(-60deg, rgb(124, 231, 71) 25%, rgb(77, 184, 255) 75%); }
+  50%  { background-image: linear-gradient(-60deg, rgb(92, 177, 50) 25%, rgb(42, 135, 197) 75%); }
+  75%  {  background-image: linear-gradient(-60deg, rgb(131, 245, 73) 25%, rgb(129, 205, 255) 75%); }
+  100% {  background-image: linear-gradient(-60deg, #6c3 25%, #09f 75%); }
+}
+
+
+// .bg {
+//   animation:slide 3s ease-in-out infinite alternate;
+//   background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+//   bottom: 200px;
+//   left:10%;
+//   opacity:.5;
+//   position:fixed;
+//   right:10%;
+//   top:200px;
+//   z-index:-1;
+//   border-radius: 50%;
+// }
+
+// .bg2 {
+//   animation-direction:alternate-reverse;
+//   animation-duration:4s;
+//   border-radius: 50%;
+// }
+
+// .bg3 {
+//   animation-duration:5s;
+//   border-radius: 50%;
+// }
+
+// .content {
+//   background-color:rgba(255,255,255,.8);
+//   border-radius:.25em;
+//   box-shadow:0 0 .25em rgba(0,0,0,.25);
+//   box-sizing:border-box;
+//   left:50%;
+//   padding:10vmin;
+//   position:fixed;
+//   text-align:center;
+//   top:50%;
+//   transform:translate(-50%, -50%);
+// }
+
+
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
+*/

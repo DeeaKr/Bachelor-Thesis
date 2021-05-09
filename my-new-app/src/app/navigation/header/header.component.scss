@@ -1,0 +1,48 @@
+a {
+    text-decoration: none;
+    color: lightgray;
+}
+a:hover, a:active{
+    color: white;
+}
+.navigation-items{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+mat-toolbar{
+    height: 7%;
+    border-radius: 3px;
+    
+}
+@media(max-width: 959px){
+    mat-toolbar{
+        border-radius: 0px;
+    }
+}
+.nav-caption{
+    display: inline-block;
+    padding-left: 6px;
+}
+mat-icon{
+    margin-top: 0%;
+}
+mat-nav-list.list-horizontal {
+    padding: 0;
+    .mat-list-item {
+      display: inline-block;
+      height: auto;
+      width: auto;
+    }
+  }
+  #nameDisplay{
+    font-size: 12px;
+    width: 30px;
+    height: auto;
+  }
+  #logout{
+    font-size: 12px;
+    width: 30px;
+    height: auto;
+    cursor: pointer;
+  }

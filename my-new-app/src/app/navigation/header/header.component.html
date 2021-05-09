@@ -1,0 +1,52 @@
+<mat-toolbar color="primary">
+    <div fxHide.gt-xs>
+        <button mat-icon-button (click)="onToggleSidenav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <!-- <div>
+        <a routerLink="/home">Home</a>
+    </div> -->
+    <div fxFlex fxLayout fxLayoutAlign="center" *ngIf="!nav.visible && nav.register">
+        Registration
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="center" *ngIf="!nav.visible && !nav.register">
+        Log In
+    </div>
+    <div id="nameDisplay" fxLayoutAlign="start" *ngIf="nav.visible">
+        {{name}}
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="center" fxHide.xs *ngIf="nav.visible">
+        <ul fxLayout fxLayoutGap="200px" class="navigation-items">
+
+            <!-- <a routerLink="/examples">Examples</a>
+            
+           
+                <a mat-list-item routerLink="/home" >
+                    <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
+                </a>
+        
+           
+                <a routerLink="/about">About</a> -->
+            <mat-nav-list class="list-horizontal" fxLayout fxLayoutGap="200px">
+
+                <a mat-list-item routerLink="/examples"
+                    [ngStyle]="{'color':route === '/examples' ? 'white' : '#000000' }">
+                    <mat-icon>assignment_ind</mat-icon> <span class="nav-caption">Examples</span>
+                </a>
+                <a mat-list-item routerLink="/home" [ngStyle]="{'color':route === '/home' ? 'white' : '#000000' }">
+                    <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
+                </a>
+                <a mat-list-item routerLink="/about" [ngStyle]="{'color':route === '/about' ? 'white' : '#000000' }">
+                    <mat-icon>auto_awesome</mat-icon><span class="nav-caption">Top Photos</span>
+                </a>
+            </mat-nav-list>
+
+        </ul>
+    </div>
+    
+    <div id="logout" fxLayoutAlign="end" *ngIf="nav.visible" (click)="deleteGotoLogin()">
+        <mat-icon>logout</mat-icon>
+    </div>
+    
+</mat-toolbar>

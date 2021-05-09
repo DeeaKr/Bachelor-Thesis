@@ -1,0 +1,98 @@
+<div id="bg">
+    <section class="home-container">
+        <img alt="logo" src="assets/images/logo.png" height="50">
+        <span style="color:red;" *ngIf="message">{{message}}</span>
+
+        <!-- <div *ngIf="happy=='normal'" id="text">
+            <h1>Welcome to our </h1>
+        </div> -->
+
+
+        <h1 *ngIf="happy=='normal'" id="welcome" class="gradient-text">Welcome to the Aesthetic Expert!</h1>
+        <img *ngIf="happy=='normal'" class="photoC" src="assets/images/photoC.png" />
+        <div *ngIf="happy=='normal'" class="text-upload-div">
+            <p id="text-upload" class="gradient-text">Upload a photo to see what does our robot thinks <br>about it.
+                Let's see if you should post this<br> photo somewhere!</p>
+        </div>
+
+        <!-- <div *ngIf="happy=='normal'" class="modal">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Quisquam, sunt ipsa eum praesentium necessitatibus consequuntur odio
+            aperiam aspernatur mollitia corporis cupiditate. Sint quis voluptas eligendi.
+            Cupiditate dolorum deleniti nisi aliquid.
+        </div> -->
+        <div *ngIf="happy=='happy'" class="robot-happy" [@inOutAnimation]>
+            <img *ngIf="robot=='blueRobot-0'" alt="happyRobot" src="assets/images/happyRobotBlue.png" height="550"
+                [@inOutAnimation]>
+            <img class="purpleSad" *ngIf="robot=='purpleRobot-1'" alt="happyRobot"
+                src="assets/images/happyRobotPurple.png" height="500" [@inOutAnimation]>
+        </div>
+        <div *ngIf="happy=='sad'" class="robot-happy" [@inOutAnimation]>
+            <img *ngIf="robot=='blueRobot-0'" alt="sadRobot" src="assets/images/sadRobotblue.png" height="550"
+                [@inOutAnimation]>
+            <img class="purpleSad" *ngIf="robot=='purpleRobot-1'" alt="sadRobot" src="assets/images/sadRobotpurple.png"
+                height="500" [@inOutAnimation]>
+        </div>
+
+        <div *ngIf="happy=='happy'" class="circular-sb">
+
+            <p>Great work!</p>
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+        </div>
+        <div *ngIf="happy=='sad'" class="circular-sb">
+            <p>You can do better!</p>
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+        </div>
+        <div class="add-photo" *ngIf="imgURL">
+            <img class="img" [src]="imgURL">
+        </div>
+        <div>
+            <input style="display: none" #file type="file" accept='image/*' (change)="preview(file.files)"
+                id="fileinput" />
+        </div>
+
+        <div *ngIf="!hide" class="add-photo">
+            <div class="background-container" (click)="file.click()">
+                <!-- <div class="background-container bg"></div>
+                <div class="background-container bg bg2"></div>
+                <div class="background-container bg bg3"></div> -->
+
+                <div class="content">
+                    <mat-icon id="icon-add-photo">add_a_photo</mat-icon>
+                </div>
+
+            </div>
+        </div>
+
+        <button id="another-photo" *ngIf="hide" mat-raised-button class="btn" color="primary" (click)="file.click()">
+            <mat-icon id="icon-add-photo2">add_a_photo</mat-icon>
+            <p>Let's see another photo!</p>
+        </button>
+        <div id="helloRobot" *ngIf="happy=='normal'">
+            <img *ngIf="robot=='blueRobot-0'" alt="helloRobot" src="assets/images/helloRobotblue.png" height="450">
+            <img id="helloRobotPurple" *ngIf="robot=='purpleRobot-1'" alt="helloRobot"
+                src="assets/images/helloRobotPurple.png" height="450">
+        </div>
+        <!-- <div id="helloRobotPurple" *ngIf="happy=='normal' && robot=='purpleRobot-1'">
+            <img alt="helloRobot" src="assets/images/helloRobotPurple.png" height="450" >
+        </div> -->
+        <button id="gotoExamples" class="mdc-fab mdc-fab--extended" (click)="gotoExamples()" *ngIf="happy!='normal'">
+            <p *ngIf="happy=='happy'" class="examplesButton">Here you can see other examples of great photos</p>
+            <p *ngIf="happy=='sad'" class="examplesButton">Here you can see some examples of great photos</p>
+        </button>
+        <!-- class="mdc-fab mdc-fab--extended" -->
+        <!-- <mat-form-field appearance="fill" style="-webkit-text-fill-color: white" id="chooseRobot">
+            <mat-label>Choose you robot</mat-label>
+            <mat-select [(ngModel)]="selectedValue" name="robot">
+                <mat-option *ngFor="let robot of robots" [value]="robot.value">
+                    <img src='{{robot.img}}'> {{robot.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field> -->
+
+
+    </section>
+
+</div>

@@ -1,0 +1,92 @@
+
+<!-- <lottie-animation-view
+[options]="lottieConfig"
+[width]="300"
+[height]="600"
+>
+</lottie-animation-view> -->
+<div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <!-- <mat-card-header>
+        <mat-card-title>Register</mat-card-title>
+      </mat-card-header> -->
+  
+      <div class="example-form" [formGroup]="registerForm">
+  
+        <mat-card-content>
+          <!-- <mat-form-field class="example-full-width">
+            <input matInput placeholder="Username">
+          </mat-form-field> -->
+          <mat-form-field class="example-full-width">
+            <input 
+            matInput
+            formControlName="nameCtrl"
+            required
+            
+             placeholder="First name and Last name">
+             <mat-error *ngIf="registerForm.controls.nameCtrl.invalid"
+        >{{ nameErrorMessage }}</mat-error>
+          </mat-form-field>
+          
+  
+          <mat-form-field class="example-full-width">
+            <input 
+            matInput 
+            formControlName="emailCtrl"
+            required
+            placeholder="Email">
+            <mat-error *ngIf="registerForm.controls.emailCtrl.invalid"
+            >Invalid email domain!</mat-error
+          >
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <mat-label>Enter your password</mat-label>
+            <input 
+            matInput 
+            formControlName="passwordCtrl"
+            required
+            placeholder=""
+            [type]="hideP ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hideP = !hideP" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideP">
+              <mat-icon>{{hideP ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+         
+  
+          <!-- <mat-form-field class="example-full-width">
+            <mat-label>Choose designation</mat-label>
+            <mat-select>
+              <mat-option [value]="user" *ngFor="let user of User">{{user}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> -->
+          <mat-form-field appearance="fill"  id="chooseRobot" class="example-full-width">
+            <mat-label>Choose your robot</mat-label>
+            <mat-select 
+            formControlName="selectedCtrl"
+            required
+           
+            name="robot">
+            <!-- [(ngModel)]="selectedValue"  -->
+                <mat-option
+                required
+                 *ngFor="let robot of robots" [value]="robot.value">
+                    {{robot.viewValue}}
+                </mat-option>
+            </mat-select>
+           
+        </mat-form-field>
+        <img *ngIf="registerForm.controls['selectedCtrl'].value=='blueRobot-0'"  mat-card-image src="assets/images/searchingRobotblue.png" alt="searchingBlue" class="blueRobot">
+        <img *ngIf="registerForm.controls['selectedCtrl'].value=='purpleRobot-1'"  mat-card-image src="assets/images/searchingRobotpurple.png" alt="searchingPurple" class="purpleRobot">
+        
+        <!-- <img  mat-card-image src="assets/images/searchingRobotpurple.png" alt="searchingBlue" class="blueRobot">
+        <img  mat-card-image src="assets/images/searchingRobotpurple.png" alt="searchingBlue" class="blueRobot"> -->
+        </mat-card-content>
+  
+        <button (click)="register()"
+        [disabled]="registerForm.invalid" mat-stroked-button color="accent" class="btn-block">Register</button>
+  
+    </div>
+    </mat-card>
+  </div>

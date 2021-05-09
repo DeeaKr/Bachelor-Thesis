@@ -1,0 +1,27 @@
+<section class="about-container">
+    <h1 id="title" class="gradient-text">
+        <mat-icon>auto_awesome</mat-icon> Top 10 best photos
+    </h1>
+    <h2 id="youare" *ngIf="inTop" class="gradient-text">
+        You are in top 10!
+    </h2>
+    <h2 id="youare" *ngIf="!inTop" class="gradient-text">
+        You are not in top 10!
+    </h2>
+    <div id="all" *ngFor="let number of numbers">
+        <div *ngIf="stringObject.urls && stringObject.urls[number]" id="insideall">
+            <div class="numberdiv">
+                <p id="number">{{numbers[number]+1}}</p>
+          </div>
+          <div class="imgdiv">
+            <img class="img" src='{{stringObject.urls[number]}}' />
+          </div>
+     
+            
+           <div id="rightBox">
+            <p id="email">By: <br>{{stringObject.emails[number]}}</p>
+            <p id="result">Result: <br>{{stringObject.result[number]}}</p>
+            </div>
+        </div>
+    </div>
+</section>
