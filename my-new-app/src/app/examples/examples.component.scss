@@ -2,13 +2,147 @@ body,
 html {
   height: 100%;
 }
-// .bg {
-//     /* The image used */
-//     background-image: url("C:/babes/licenataStuff/Front-end/Front-end-Bachelor-Thesis/my-new-app/src/assets/images/backgood.png");
-//     /* Full height */
-//     height: 100%;
-//     /* Center and scale the image nicely */
-//     background-position: center;
-//     background-repeat: no-repeat;
-//     background-size: cover;
-//   }
+#all{
+  position: relative;
+  top: 100px;
+  margin-bottom: 30px;
+}
+#insideall {
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+#imgdiv{
+  float:left; 
+  width: 50%;
+}
+.img {
+  border-radius: 10%;
+  border: 1px solid white;
+  object-fit: cover;
+
+  //centers the image
+  height: 550px;
+  width: 550px;
+  position: relative;
+  left: 20%;
+}
+#more{
+  position: relative;
+  top:90px;
+  left: 45%;
+  background-color:#3949ab;
+  
+}
+#rightBox{
+  float: right;
+  width:25%;
+}
+#blue{
+  position: absolute;
+  top:42%;
+  left: 58%;
+}
+#helloRobot{
+    position: absolute;
+    top:40%;
+    left:60%;
+
+}
+#helloRobotR2D2{
+  position: absolute;
+    top:50%;
+    left:57%;
+}
+#helloRobotWalle{
+  position: absolute;
+  top:30%;
+  left:50%;
+}
+
+.resultExamples{
+  position: absolute;
+  left: 67%;
+  top:75%;
+
+  color:black;
+  font-weight: 500;
+
+}.resultExamplesWall-e{
+  position: absolute;
+  left: 67%;
+  top:40%;
+
+  color:black;
+  font-weight: 500;
+}
+#title {
+  font-family: "Archivo Black", sans-serif;
+  //font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 30;
+  font-weight: 800;
+  position: relative;
+  top: 30px;
+  left: 25%;
+}
+.gradient-text {
+  /* Fallback: Set a background color. */
+  background-color: #09f;
+
+  /* Create the gradient. */
+  background-image: linear-gradient(
+      45deg,
+      #09f 16.666%,
+      rgba(129, 205, 255, 0.747) 16.666%,
+      #09f 33.333%,
+      rgb(157, 167, 255) 33.333%,
+      rgb(155, 202, 255) 50%,
+      rgb(252, 252, 252) 50%,
+      rgb(98, 151, 250) 66.666%,
+      #d5e7ff 66.666%,
+      #09f 83.333%,
+      rgb(115, 199, 255) 83.333%
+  );
+
+  /* Set the background size and repeat properties. */
+  background-size: 30%;
+  background-repeat: repeat;
+
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+  -webkit-background-clip: text;
+  background-clip: none;
+  -webkit-text-fill-color: transparent;
+
+  /* Animate the text when loading the element. */
+  /* This animates it on page load and when hovering out. */
+  animation: rainbow-text-simple-animation-rev 0.75s ease forwards;
+}
+
+.gradient-text:hover {
+  animation: rainbow-text-simple-animation 0.5s ease-in forwards;
+}
+@keyframes rainbow-text-simple-animation-rev {
+  0% {
+      background-size: 150%;
+  }
+  40% {
+      background-size: 150%;
+  }
+  100% {
+      background-size: 30%;
+  }
+}
+
+/* Move the background and make it larger. */
+/* Animation shown when hovering over the text. */
+@keyframes rainbow-text-simple-animation {
+  0% {
+      background-size: 30%;
+  }
+  80% {
+      background-size: 150%;
+  }
+  100% {
+      background-size: 150%;
+  }
+}

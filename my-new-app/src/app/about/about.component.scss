@@ -44,14 +44,66 @@
     position: relative;
     left: 10%;
   }
+  .bubble {
+    position: absolute;
+    font-family: sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    width: 300px;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 40px;
+    border: solid #fff;
+    padding: 24px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    left: 75%;
+    top: 40%;
+  }
+  
+  .bubble-bottom-left:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 24px solid #fff;
+    border-right: 12px solid transparent;
+    border-top: 12px solid #fff;
+    border-bottom: 20px solid transparent;
+    left: 32px;
+    bottom: -32px;
+  }
+  
+  
 #all {
     border: 1px solid white;
-    
-    position: relative;
+    background: rgb(74,92,120);
+background: linear-gradient(90deg, rgba(74,92,120,0.7458333675266982) 9%, rgba(91,107,145,0.7206232834930848) 19%, rgba(146,163,191,0.7178221630449055) 33%, rgba(193,212,251,0.2752451322325805) 69%);
+position: relative;
     top: 60px;
     margin-bottom: 30px;
 }
+#helloRobot{
+    position: absolute;
+    top:40%;
+    left:60%;
+}
+#helloRobotR2D2{
+    position: absolute;
+    top:50%;
+    left:60%;
+}
+#helloRobotWalle{
+    position: absolute;
+    top:50%;
+    left:65%;
+}
+#blue{
+    position: absolute;
+    top:40%;
+    left:50%;
+}
 #insideall {
+    margin-top: 30px;
     margin-bottom: 30px;
 }
 #email {

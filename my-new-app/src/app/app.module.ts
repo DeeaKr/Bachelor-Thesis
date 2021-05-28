@@ -22,6 +22,14 @@ import{ AngularFireAuthModule} from '@angular/fire/auth'
 import{AngularFireDatabaseModule} from '@angular/fire/database'
 import { AuthServiceService } from './services/auth-service.service';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { CommonModule } from '@angular/common';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { NavbarService } from './services/navbar.service';
+import { RegisterService } from './services/register.service';
+import { UploadService } from './services/upload.service';
+import { UtilsService } from './services/utils.service';
+import { FacadeServiceService } from './services/facade-service.service';
+
 
 
 
@@ -35,7 +43,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     SidenavListComponent,
     RegisterComponent,
     LoginComponent,
-    DialogComponent
+    DialogComponent,
+    VerifyEmailComponent
   ],
   imports: [
     BrowserModule,
@@ -49,14 +58,15 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    CommonModule
     
     
 
 
 
   ],
-  providers: [AuthServiceService],
+  providers: [AuthServiceService, NavbarService, RegisterService, UploadService, UtilsService, FacadeServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

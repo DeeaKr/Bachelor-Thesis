@@ -23,8 +23,12 @@ export class UploadService {
   getRobot(email:any){
     return this.http.get(`${URL}/robot/?email=`+email,{responseType: 'text'});
   }
+  //design pattern observer
   getTop(){
     return this.http.get(`${URL}/top10`);
+  }
+  getExamples(){
+    return this.http.get(`${URL}/examples`);
   }
   
 }

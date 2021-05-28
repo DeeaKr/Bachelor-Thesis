@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { logFunction } from '../data/decorator';
 import { UserPart } from '../data/userPart';
+import { AuthServiceService } from '../services/auth-service.service';
+import { FacadeServiceService } from '../services/facade-service.service';
 import { NavbarService } from '../services/navbar.service';
 import { RegisterService } from '../services/register.service';
 import { UtilsService } from '../services/utils.service';
@@ -21,53 +24,66 @@ export class LoginComponent implements OnInit {
   hideP=true;
 
   emailDomains: string[] = ['@GMAIL.COM','@YAHOO.COM','@YAHOO.RO'];
-  constructor(private nav:NavbarService, private registerService:RegisterService, private router:Router, private utilsService:UtilsService) { }
+  constructor(private nav:NavbarService, private registerService:RegisterService, private router:Router, 
+    private utilsService:UtilsService, private authService:AuthServiceService, private facadeService:FacadeServiceService) { 
+      
+    }
+
 
   ngOnInit(): void {
-    this.nav.hideRegister();
-    this.nav.hide();
-  }
-  
-  login(): void {
+    let user=JSON.parse(localStorage.getItem('user') || '{}');
+    if(user.email!=null){
+      this.router.navigate(['home']);
+    }
+    this.facadeService.hideRegister();
+    this.facadeService.hide();
 
+  }
+  //design pattern decorator
+  @logFunction()
+  login(): void {
+   
+    console.log(this.loginForm.controls['emailCtrl'].value);
     if (this.validateInputs()) {
-      let newUser: UserPart = {
+      //this.authService.SignIn
+      this.facadeService.SignIn(this.loginForm.controls['emailCtrl'].value,this.loginForm.controls['passwordCtrl'].value);
+      // let newUser: UserPart = {
        
       
-        email: this.loginForm.controls['emailCtrl'].value,
+      //   email: this.loginForm.controls['emailCtrl'].value,
         
-        password: this.loginForm.controls['passwordCtrl'].value,
-      };
+      //   password: this.loginForm.controls['passwordCtrl'].value,
+      // };
 
-      this.registerService.loginUser(newUser).subscribe(
-        (res) => {
+      // this.registerService.loginUser(newUser).subscribe(
+      //   (res) => {
          
-        },
-        (res) => {
+      //   },
+      //   (res) => {
           
-          this.message = '';
+      //     this.message = '';
 
-          if (res.statusText == 'Unknown Error') {
-            this.message += 'Server is not working!';
-            this.utilsService.openFailSnackBar(this.message);
-          }
-          else if(res.statusText == 'OK'){
-            this.router.navigateByUrl('/home');
-            this.message+="Succesfully logged in";
-            this.registerService.setItem("email",this.loginForm.controls['emailCtrl'].value);
-            this.utilsService.openSuccesSnackBar(this.message);
+      //     if (res.statusText == 'Unknown Error') {
+      //       this.message += 'Server is not working!';
+      //       this.utilsService.openFailSnackBar(this.message);
+      //     }
+      //     else if(res.statusText == 'OK'){
+      //       this.router.navigateByUrl('/home');
+      //       this.message+="Succesfully logged in";
+      //       this.registerService.setItem("email",this.loginForm.controls['emailCtrl'].value);
+      //       this.utilsService.openSuccesSnackBar(this.message);
             
-          } 
-          else {
-            // this.message += error.error.message;
-            console.log(res);
-            this.message+=res.error;
-            this.utilsService.openFailSnackBar(this.message);
-          }
+      //     } 
+      //     else {
+      //       // this.message += error.error.message;
+      //       console.log(res);
+      //       this.message+=res.error;
+      //       this.utilsService.openFailSnackBar(this.message);
+      //     }
 
           
-        }
-      );
+      //   }
+      // );
     }
   }
 

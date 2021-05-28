@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AngularFireAuth } from "@angular/fire/auth";
 import{AngularFireDatabase} from "@angular/fire/database"
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -13,7 +13,7 @@ import { UserDb } from '../data/userDatabase';
 })
 export class AuthServiceService {
   userData: any;
-  
+  test: any;
 
 
   constructor( public afs: AngularFirestore,    // Inject Firestore service
@@ -24,17 +24,19 @@ export class AuthServiceService {
     private db: AngularFireDatabase) {
       this.afAuth.authState.subscribe(user => {
         if (user) {
-          this.userData = user;
-          localStorage.setItem('user', JSON.stringify(this.userData));
+          //this.userData = user;
+         // localStorage.setItem('user', JSON.stringify(this.userData));
          
-          JSON.parse(localStorage.getItem("user") || '{}');
+          //JSON.parse(localStorage.getItem("user") || '{}');
         } else {
-          localStorage.setItem("user", "");
-          JSON.parse(localStorage.getItem('user') || '{}');
+          //localStorage.setItem("user", '');
+          //JSON.parse(localStorage.getItem('user') || '{}');
         }
       });
 
    }
+   private loginStatus = new BehaviorSubject<boolean>(this.isLoggedIn);
+   private email    = new BehaviorSubject<string>(this.getEmail());
 
 
 
@@ -42,14 +44,34 @@ export class AuthServiceService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((result:any) => {
         this.ngZone.run(() => {
-          this.router.navigate(['home']);
-          this.utilsService.openSuccesSnackBar("Successfully logged in");
+          //this.SetUserData(result.user);
+          this.router.navigate(['home']).then(() => {
+            var verified=JSON.parse(localStorage.getItem('user') || '{}').emailVerified;
+            if(verified !== undefined  && verified!== false) 
+            { 
+              this.utilsService.openSuccesSnackBar("Successfully logged in");
+            }
+            else{
+           
+            this.utilsService.openFailSnackBar("Verify your email first!");
+            }
+          });;
+         
         });
-        this.SetUserData(result.user);
+        this.loginStatus.next(true);
+       this.SetUserData(result.user);
+       this.email.next(JSON.parse(localStorage.getItem('user') || '{}').email);
       }).catch((error:any) => {
         
         this.utilsService.openFailSnackBar(error.message);
       })
+  }
+
+  getEmail(){
+    var email;
+    email=JSON.parse(localStorage.getItem('user') || '{}').email;
+
+    return email;
   }
 
   SignUp(email:string, password:string, robot:string, name:string) {
@@ -64,12 +86,16 @@ export class AuthServiceService {
           robot: robot
         };
         this.db.list('usersRobots').push(newUser);
-        this.SendVerificationMail();
+        
         this.SetUserData(result.user);
+        this.SendVerificationMail();
       }).catch((error:any) => {
         this.utilsService.openFailSnackBar(error.message);
       })
   }
+  // getEmail(){
+  //   return this.userData.email;
+  // }
 
   // Send email verfificaiton when new user sign up
   SendVerificationMail() {
@@ -96,7 +122,14 @@ export class AuthServiceService {
 
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return (user !== null && user.emailVerified !== false) ? true : false;
+   
+    if(user.emailVerified !== undefined  && user.emailVerified !== false) 
+    { 
+      return true; 
+    }
+    else{ 
+      return false;
+    }
   }
   SetUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
@@ -107,18 +140,32 @@ export class AuthServiceService {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified
     }
+    localStorage.setItem('user', JSON.stringify(userData));
     return userRef.set(userData, {
       merge: true
     })
    
 
   }
+  get isLoggedInUser() 
+    {
+        return this.loginStatus.asObservable();
+    }
+
+    get getEmailObs() 
+    {
+        return this.email.asObservable();
+    }
 
   // Sign out 
   SignOut() {
     return this.afAuth.auth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['login']);
+      this.loginStatus.next(false);
+      this.router.navigateByUrl('login').then(() => {
+        window.location.reload();
+      });;
+      
     })
   }
 }

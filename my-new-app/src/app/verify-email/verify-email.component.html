@@ -1,27 +1,50 @@
-<div class="displayTable">
+<!-- <div class="displayTable">
     <div class="displayTableCell">
   
       <div class="authBlock">
         <h3>Thank You for Registering</h3>
   
-        <div class="formGroup" *ngIf="authService.userData as user">
+        <div *ngIf="authService.userData as user" class="formGroup" >
           <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
           <p class="text-center">Please check your email and click on the link to verfiy your email address.</p>
         </div>
         
-        <!-- Calling SendVerificationMail() method using authService Api -->
+       
+        
         <div class="formGroup">
           <button type="button" class="btn btnPrimary" (click)="authService.SendVerificationMail()">
             <i class="fas fa-redo-alt"></i>
             Resend Verification Email
           </button>
         </div>
+
   
       </div>
   
       <div class="redirectToLogin">
-        <span>Go back to?<span class="redirect" routerLink="/login"> Sign in</span></span>
+        <span>Go back to <span class="redirect" routerLink="/login"> Log in</span></span>
       </div>
   
     </div>
+  </div> -->
+  <img alt="logo" src="assets/images/logo.png" height="50">
+  <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Thank You for Registering</mat-card-title>
+      <mat-card-subtitle>From Aesthetic Expert</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngIf="authService.userData as user" class="formGroup" >
+        <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
+        <p class="text-center">Please check your email and click on the link to verfiy your email address.</p>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button mat-stroked-button color="accent" (click)="sendVerif()">Resend Verification Email</button>
+      <button mat-button mat-stroked-button color="accent" (click)="gotToLogin()">Ready to log in <mat-icon>done_outline</mat-icon></button>
+     
+    </mat-card-actions>
+  </mat-card>
   </div>

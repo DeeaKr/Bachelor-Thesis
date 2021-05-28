@@ -34,6 +34,83 @@ html {
   //  justify-content: center;
   //  align-items: center;
 }
+.flip-card {
+  position: relative;
+  top: 0px;
+  left: 7%;
+  height: 400px;
+  width: 400px;
+  background-color: transparent;
+  
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  border-radius: 50%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+
+
+  
+  // border: 1px solid black ;
+  display: table-cell;
+  
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  // background-color: grey;
+  opacity: 0.8;
+
+  //for background:
+  // background-image: url(http://placekitten.com/400/200);
+  //background: linear-gradient(-60deg, #6c3 25%, #09f 75%);
+
+  background-position: 0px 0px;
+  background-repeat: repeat-x;
+
+  background: linear-gradient(45deg, #6c3, #09f);
+  background-size: 200% 200%;
+  background-position: 0% 100%;
+  animation-name: test_hover;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+
+
+ 
+  color: white;
+  transform: rotateY(180deg);
+}
+.flip-card-back h1{
+  position: relative;
+  top:50%;
+}
 #welcome {
   // color: white;
   font-family: "Archivo Black", sans-serif;
@@ -78,6 +155,16 @@ html {
   top:30%;
   left: 40%;
 }
+#helloRobotR2D2{
+  position: relative;
+  top:30%;
+  left: 30%;
+}
+#helloRobotWalle{
+  position: relative;
+  top:100px;
+  left: 40%;
+}
 #gotoExamples{
   position: relative;
   top:40px;
@@ -98,7 +185,26 @@ position: relative;
   top: 10%;
   left: 55%;
 }
-
+.R2D2Happy{
+  position: relative;
+  top: 130px;
+  left: 95%;
+}
+.R2D2Sad{
+  position: relative;
+  top: 150px;
+  left: 45%;
+}
+.WalleSad{
+  position: relative;
+  top: 150px;
+  left: 95%;
+}
+.WalleHappy{
+  position: relative;
+  top: -20px;
+  left: 100%;
+}
 #icon-add-photo2 {
   font-size: 25px;
   text-align: center;

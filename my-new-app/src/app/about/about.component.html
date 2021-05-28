@@ -1,4 +1,5 @@
 <section class="about-container">
+    <img alt="logo" src="assets/images/logo.png" height="50">
     <h1 id="title" class="gradient-text">
         <mat-icon>auto_awesome</mat-icon> Top 10 best photos
     </h1>
@@ -12,16 +13,45 @@
         <div *ngIf="stringObject.urls && stringObject.urls[number]" id="insideall">
             <div class="numberdiv">
                 <p id="number">{{numbers[number]+1}}</p>
-          </div>
-          <div class="imgdiv">
-            <img class="img" src='{{stringObject.urls[number]}}' />
-          </div>
-     
-            
-           <div id="rightBox">
-            <p id="email">By: <br>{{stringObject.emails[number]}}</p>
-            <p id="result">Result: <br>{{stringObject.result[number]}}</p>
+            </div>
+            <div class="imgdiv">
+                <img class="img" src='{{stringObject.urls[number]}}' />
+            </div>
+
+
+            <div id="rightBox">
+
+                <p id="email">By: <br>{{stringObject.emails[number]}}</p>
+                <p id="result">This picture averaged: <br>{{stringObject.result[number]*100 | number}} %</p>
+                <div id="blue" *ngIf="number === places[number]">
+                    <img *ngIf="robot=='blueRobot-0'" alt="helloRobot" src="assets/images/ideaRobotblue.png"
+                        height="350">
+                </div>
+                <div id="helloRobot" *ngIf="number === places[number]">
+                    <img id="helloRobotPurple" *ngIf="robot=='purpleRobot-1'" alt="helloRobot"
+                        src="assets/images/ideaRobotpurple.png" height="300">
+                </div>
+
+                <div id="helloRobotR2D2" *ngIf="number === places[number]">
+                    <img id="helloRobot" *ngIf="robot=='r2d2-2'" alt="helloRobot"
+                        src="assets/images/ideaRobotR2D2.png" height="230">
+                </div>
+                <div id="helloRobotWalle" *ngIf="number === places[number]">
+                    <img id="helloRobot" *ngIf="robot=='walle-3'" alt="helloRobot"
+                        src="assets/images/ideaRobotWall-e2.png" height="240">
+                </div>
+
+                <!-- <div *ngIf="number === places[number]" class="circular-sb">
+
+                <p>Here you are!</p>
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+            </div> -->
+                <div *ngIf="number === places[number]" class="bubble bubble-bottom-left">
+                    Here you are!
+                </div>
             </div>
         </div>
+
     </div>
 </section>

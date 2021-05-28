@@ -5,6 +5,9 @@ import { NavbarService } from '../services/navbar.service';
 import { Router } from '@angular/router';
 import { RegisterService } from '../services/register.service';
 import { PhotoResult } from '../data/photoResult';
+import { AuthServiceService } from '../services/auth-service.service';
+import { FacadeServiceService } from '../services/facade-service.service';
+import { UtilsService } from '../services/utils.service';
 
 export interface Robot {
   value: string;
@@ -49,7 +52,7 @@ export interface Robot {
       ]),
       trigger('pageAnimations', [
         transition(':enter', [
-          query('#welcome,  .photoC, .add-photo, #helloRobot, #helloRobotPurple', [
+          query('#welcome,  .photoC, .add-photo, #helloRobot, #helloRobotPurple, #helloRobotR2D2', [
             style({opacity: 0, transform: 'translateY(-100px)'}),
             stagger(-30, [
               animate('600ms cubic-bezier(0.35, 0, 0.25, 1)', style({ opacity: 1, transform: 'none' }))
@@ -69,12 +72,14 @@ export class HomeComponent implements OnInit {
   name:string='';
   robot:string='';
   email:any;
-  constructor(private uploadService: UploadService, private nav: NavbarService, public router: Router,private registerService:RegisterService) { }
+  constructor(private uploadService: UploadService, private nav: NavbarService, public router: Router
+    ,private registerService:RegisterService, private authService:AuthServiceService, private utilisService:UtilsService) { }
   stringObject: PhotoResult = new PhotoResult;
   serverData: JSON | undefined;
   public imagePath = '';
   imgURL: any;
   public message: string = '';
+  result:number=0;
   robots: Robot[] = [
     { value: 'blueRobot-0', viewValue: 'Blue Robot', img: 'assets/images/helloRobotblue.png' },
     { value: 'purpleRobot-1', viewValue: 'Purple Robot', img: 'assets/images/helloRobotPurple.png' },
@@ -91,6 +96,7 @@ export class HomeComponent implements OnInit {
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       this.message = "Only images are supported.";
+      this.utilisService.openFailSnackBar(this.message);
       return;
     }
 
@@ -105,6 +111,7 @@ export class HomeComponent implements OnInit {
         {
           console.log(res);
           var r=Number(res);
+          this.result=Number(res);
           if(r>=0.5){
             this.happy='happy';
           }
@@ -121,29 +128,31 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('/examples');
   }
   ngOnInit(): void {
-    this.email=this.registerService.getEmail();
+    let user=JSON.parse(localStorage.getItem('user') || '{}');
+    this.email=user.email;
+    // this.email=this.authService.userData.email;
     this.nav.show();
     this.uploadService.getDisplayName(this.email).subscribe(
       res=>{
-        console.log(res);
+       
         this.name=String(res);
         
       }
     );
     this.uploadService.getRobot(this.email).subscribe(
       res=>{
-        console.log(res);
+        
         this.robot=String(res);
       }
     );
-    this.uploadService.getTop().subscribe(data =>{
-      this.serverData = data as JSON;
-      this.stringJson = JSON.stringify(this.serverData);
-      this.stringObject = JSON.parse(this.stringJson);
-      console.log("JSON object -", this.stringObject);
-      console.log("email:" , this.stringObject.emails[0]);
-      console.log(this.serverData);
-    });
+    // this.uploadService.getTop().subscribe(data =>{
+    //   this.serverData = data as JSON;
+    //   this.stringJson = JSON.stringify(this.serverData);
+    //   this.stringObject = JSON.parse(this.stringJson);
+    //   console.log("JSON object -", this.stringObject);
+    //   console.log("email:" , this.stringObject.emails[0]);
+    //   console.log(this.serverData);
+    // });
     
   }
 

@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { logFunction } from '../data/decorator';
 import { User } from '../data/user';
 import { AuthServiceService } from '../services/auth-service.service';
+import { FacadeServiceService } from '../services/facade-service.service';
 import { NavbarService } from '../services/navbar.service';
 import { RegisterService } from '../services/register.service';
 import { UtilsService } from '../services/utils.service';
 export interface Robot {
   value: string;
   viewValue: string;
-  img: string;
+ 
 }
 @Component({
   selector: 'app-register',
@@ -19,9 +21,10 @@ export interface Robot {
 
 export class RegisterComponent implements OnInit {
   robots: Robot[] = [
-    { value: 'blueRobot-0', viewValue: 'Blue Robot', img: 'assets/images/helloRobotblue.png' },
-    { value: 'purpleRobot-1', viewValue: 'Purple Robot', img: 'assets/images/helloRobotPurple.png' },
-    { value: 'tacos-2', viewValue: 'Tacos', img: 'https://www.akberiqbal.com/favicon-16x16.png' }
+    { value: 'blueRobot-0', viewValue: 'Blue Robot' },
+    { value: 'purpleRobot-1', viewValue: 'Purple Robot' },
+    { value: 'r2d2-2', viewValue: 'R2D2' },
+    {value: 'walle-3',viewValue:'Wall-e'}
   ];
   registerForm = new FormGroup({
     emailCtrl: new FormControl('', [Validators.required, Validators.email]),
@@ -40,7 +43,7 @@ export class RegisterComponent implements OnInit {
   constructor(  private utilsService: UtilsService,
     private router: Router,
     public nav: NavbarService,
-    private registerService:RegisterService, private authService : AuthServiceService) {
+    private registerService:RegisterService, private authService : AuthServiceService, private facadeService:FacadeServiceService) {
       this.lottieConfig = {
         path: "https://assets7.lottiefiles.com/packages/lf20_xldshlit.json",
         renderer: 'canvas',
@@ -59,10 +62,12 @@ export class RegisterComponent implements OnInit {
     this.selectedValue=this.registerForm.controls['selectedCtrl'].value;
   }
 
+  @logFunction()
   register(): void {
-
+    
     if (this.validateInputs()) {
-      this.authService.SignUp(this.registerForm.controls['emailCtrl'].value,this.registerForm.controls['passwordCtrl'].value,
+      //this.authService.SignUp(...) was before
+      this.facadeService.SignUp(this.registerForm.controls['emailCtrl'].value,this.registerForm.controls['passwordCtrl'].value,
       this.registerForm.controls['selectedCtrl'].value,this.registerForm.controls['nameCtrl'].value);
 
       // let newUser: User = {

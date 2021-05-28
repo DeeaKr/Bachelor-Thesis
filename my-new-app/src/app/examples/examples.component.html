@@ -1,1 +1,112 @@
+<section class="examples-container">
+    <img alt="logo" src="assets/images/logo.png" height="50">
+    <h1 id="title" class="gradient-text">
+        <mat-icon>photo_camera</mat-icon> Here you can see the best examples in our dataset!
+    </h1>
+    <div id="all" *ngFor="let number of numbersFirst">
+        <div *ngIf="stringObject.urls && stringObject.urls[number] && stringObject.result && stringObject.result[number]"
+            id="insideall">
+            <div class="imgdiv">
+                <img class="img" src='{{stringObject.urls[number]}}' />
+            </div>
+            <div id="rightBox">
+                <div id="blue">
+                    <img *ngIf="robot=='blueRobot-0'" alt="helloRobot" src="assets/images/toHoldBillboardBlue.png"
+                        height="300">
+                </div>
+                <div id="helloRobot">
+                    <img id="helloRobotPurple" *ngIf="robot=='purpleRobot-1'" alt="helloRobot"
+                        src="assets/images/toHoldBillboardPurple.png" height="300">
+                </div>
+                <div id="helloRobotR2D2">
+                    <img *ngIf="robot=='r2d2-2'" alt="helloRobot"
+                        src="assets/images/toHoldBillboardR2D2.png" height="250">
+                </div>
+                <div id="helloRobotWalle">
+                    <img *ngIf="robot=='walle-3'" alt="helloRobot"
+                        src="assets/images/toHoldBillboardWall-e2.png" height="450">
+                </div>
+                <div *ngIf="robot!='walle-3'" class="resultExamples">
+                    {{stringObject.result[number]*100 | number}}%
+                </div>
+                <div *ngIf="robot=='walle-3'" class="resultExamplesWall-e">
+                    {{stringObject.result[number]*100 | number}}%
+                </div>
+            </div>
+        </div>
 
+    </div>
+    <button id="more" *ngIf="where==1" class="mdc-fab mdc-fab--extended" (click)="seeMore()">See more</button>
+    <div *ngIf="where==2 || where==3">
+        <div id="all" *ngFor="let number of numbersMiddle">
+            <div *ngIf="stringObject.urls && stringObject.urls[number] && stringObject.result && stringObject.result[number]"
+                id="insideall">
+                <div class="imgdiv">
+                    <img class="img" src='{{stringObject.urls[number]}}' />
+                </div>
+            </div>
+            <div id="rightBox">
+                <div id="blue">
+                    <img *ngIf="robot=='blueRobot-0'" alt="helloRobot" src="assets/images/toHoldBillboardBlue.png"
+                        height="300">
+                </div>
+                <div id="helloRobot">
+                   
+                    <img id="helloRobotPurple" *ngIf="robot=='purpleRobot-1'" alt="helloRobot"
+                        src="assets/images/toHoldBillboardPurple.png" height="300">
+                </div>
+                <div id="helloRobotR2D2">
+                    <img *ngIf="robot=='r2d2-2'" alt="helloRobot"
+                        src="assets/images/toHoldBillboardR2D2.png" height="250">
+                </div>
+                <div id="helloRobotWalle">
+                    <img *ngIf="robot=='walle-3'" alt="helloRobot"
+                        src="assets/images/toHoldBillboardWall-e2.png" height="450">
+                </div>
+                <div *ngIf="robot!='walle-3'" class="resultExamples">
+                    {{stringObject.result[number]*100 | number}}%
+                </div>
+                <div *ngIf="robot=='walle-3'" class="resultExamplesWall-e">
+                    {{stringObject.result[number]*100 | number}}%
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="more" *ngIf="where==2 " class="mdc-fab mdc-fab--extended" (click)="seeMore2()">See more</button>
+    <div *ngIf="where==3">
+        <div id="all" *ngFor="let number of numbersLast">
+            <div *ngIf="stringObject.urls && stringObject.urls[number] && stringObject.result && stringObject.result[number]"
+                id="insideall">
+                <div class="imgdiv">
+                    <img class="img" src='{{stringObject.urls[number]}}' />
+                </div>
+            </div>
+            <div id="rightBox">
+                <div id="blue">
+                    <img  *ngIf="robot=='blueRobot-0'" alt="helloRobot"
+                        src="assets/images/toHoldBillboardBlue.png" height="300">
+                </div>
+                <div id="helloRobot">
+                    <img *ngIf="robot=='purpleRobot-1'" alt="helloRobot"
+                        src="assets/images/toHoldBillboardPurple.png" height="300">
+                </div>
+                <div id="helloRobotR2D2">
+                    <img *ngIf="robot=='r2d2-2'" alt="helloRobot"
+                        src="assets/images/toHoldBillboardR2D2.png" height="250">
+                </div>
+                <div id="helloRobotWalle">
+                    <img *ngIf="robot=='walle-3'" alt="helloRobot"
+                        src="assets/images/toHoldBillboardWall-e2.png" height="450">
+                </div>
+                <div *ngIf="robot!='walle-3'" class="resultExamples">
+                    {{stringObject.result[number]*100 | number}}%
+                </div>
+                <div *ngIf="robot=='walle-3'" class="resultExamplesWall-e">
+                    {{stringObject.result[number]*100 | number}}%
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
