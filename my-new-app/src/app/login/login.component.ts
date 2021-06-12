@@ -19,13 +19,13 @@ export class LoginComponent implements OnInit {
     emailCtrl: new FormControl('', [Validators.required, Validators.email]),
     passwordCtrl: new FormControl('', [Validators.required]),
   });
-  message = '';
+  // message = '';
   
   hideP=true;
 
   emailDomains: string[] = ['@GMAIL.COM','@YAHOO.COM','@YAHOO.RO'];
-  constructor(private nav:NavbarService, private registerService:RegisterService, private router:Router, 
-    private utilsService:UtilsService, private authService:AuthServiceService, private facadeService:FacadeServiceService) { 
+  constructor( private router:Router, 
+     private facadeService:FacadeServiceService) { 
       
     }
 
@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
     }
     this.facadeService.hideRegister();
     this.facadeService.hide();
+    this.facadeService.navService.hideVerify();
 
   }
   //design pattern decorator

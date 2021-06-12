@@ -62,8 +62,14 @@ export class AuthServiceService {
        this.SetUserData(result.user);
        this.email.next(JSON.parse(localStorage.getItem('user') || '{}').email);
       }).catch((error:any) => {
+        if(error.message.includes("There is no user record")){
+          this.utilsService.openFailSnackBar("There is no user registered with this email");
+
+        }
+         else{ 
         
         this.utilsService.openFailSnackBar(error.message);
+         }
       })
   }
 

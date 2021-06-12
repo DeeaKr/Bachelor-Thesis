@@ -15,7 +15,7 @@ export class ExamplesComponent implements OnInit {
   numbersLast:any;
   where:number=1;
 
-  constructor(private nav: NavbarService, private facadeService:FacadeServiceService) { 
+  constructor( private facadeService:FacadeServiceService) { 
     this.numbersFirst = Array(30 - 20 ).fill(0).map((_, idx) => 20 + idx).reverse();
     
     this.numbersMiddle=Array(20-10).fill(0).map((_, idx) => 10 + idx).reverse();

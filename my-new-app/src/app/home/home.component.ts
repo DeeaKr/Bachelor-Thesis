@@ -68,14 +68,14 @@ export class HomeComponent implements OnInit {
   public animatePage = true;
   hide:boolean=false;
   happy:string='normal';
-  selectedValue:string='';
+  // selectedValue:string='';
   name:string='';
   robot:string='';
   email:any;
-  constructor(private uploadService: UploadService, private nav: NavbarService, public router: Router
-    ,private registerService:RegisterService, private authService:AuthServiceService, private utilisService:UtilsService) { }
-  stringObject: PhotoResult = new PhotoResult;
-  serverData: JSON | undefined;
+  constructor( public router: Router
+    ,private facadeService:FacadeServiceService) { }
+  // stringObject: PhotoResult = new PhotoResult;
+  // serverData: JSON | undefined;
   public imagePath = '';
   imgURL: any;
   public message: string = '';
@@ -85,7 +85,7 @@ export class HomeComponent implements OnInit {
     { value: 'purpleRobot-1', viewValue: 'Purple Robot', img: 'assets/images/helloRobotPurple.png' },
     { value: 'tacos-2', viewValue: 'Tacos', img: 'https://www.akberiqbal.com/favicon-16x16.png' }
   ];
-  stringJson:any;
+  // stringJson:any;
 
 
   preview(files: any) {
@@ -96,7 +96,7 @@ export class HomeComponent implements OnInit {
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       this.message = "Only images are supported.";
-      this.utilisService.openFailSnackBar(this.message);
+      this.facadeService.openFailSnackBar(this.message);
       return;
     }
 
@@ -106,10 +106,9 @@ export class HomeComponent implements OnInit {
     reader.onload = (_event) => {
       this.hide=true;
       
-      this.uploadService.onUpload(files[0],this.email).subscribe(
+      this.facadeService.onUpload(files[0],this.email).subscribe(
         res=>
         {
-          console.log(res);
           var r=Number(res);
           this.result=Number(res);
           if(r>=0.5){
@@ -131,15 +130,15 @@ export class HomeComponent implements OnInit {
     let user=JSON.parse(localStorage.getItem('user') || '{}');
     this.email=user.email;
     // this.email=this.authService.userData.email;
-    this.nav.show();
-    this.uploadService.getDisplayName(this.email).subscribe(
+    this.facadeService.show();
+    this.facadeService.getDisplayName(this.email).subscribe(
       res=>{
        
         this.name=String(res);
         
       }
     );
-    this.uploadService.getRobot(this.email).subscribe(
+    this.facadeService.getRobot(this.email).subscribe(
       res=>{
         
         this.robot=String(res);

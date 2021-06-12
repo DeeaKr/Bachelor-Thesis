@@ -7,11 +7,14 @@
     <!-- <div>
         <a routerLink="/home">Home</a>
     </div> -->
-    <div fxFlex fxLayout fxLayoutAlign="center" *ngIf="!nav.visible && nav.register">
+    <div fxFlex fxLayout fxLayoutAlign="center" *ngIf="!nav.visible && nav.register && !nav.verify">
         Registration
     </div>
-    <div fxFlex fxLayout fxLayoutAlign="center" *ngIf="!nav.visible && !nav.register">
+    <div fxFlex fxLayout fxLayoutAlign="center" *ngIf="!nav.visible && !nav.register && !nav.verify">
         Log In
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="center" *ngIf="!nav.visible && !nav.register && nav.verify">
+        Verify Email
     </div>
     <div id="nameDisplay" fxLayoutAlign="start" *ngIf="nav.visible">
         {{name}}

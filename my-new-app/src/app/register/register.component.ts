@@ -37,28 +37,26 @@ export class RegisterComponent implements OnInit {
   hideP=true;
   selectedValue:string='';
   emailDomains: string[] = ['@GMAIL.COM','@YAHOO.COM','@YAHOO.RO'];
-  public lottieConfig: Object | undefined;
-  private anim: any;
-  private animationSpeed: number = 1;
-  constructor(  private utilsService: UtilsService,
-    private router: Router,
-    public nav: NavbarService,
-    private registerService:RegisterService, private authService : AuthServiceService, private facadeService:FacadeServiceService) {
-      this.lottieConfig = {
-        path: "https://assets7.lottiefiles.com/packages/lf20_xldshlit.json",
-        renderer: 'canvas',
-        autoplay: true,
-        loop: true,
-        speed:1
-    };
+  // public lottieConfig: Object | undefined;
+  // private anim: any;
+  // private animationSpeed: number = 1;
+  constructor(   private facadeService:FacadeServiceService) {
+    //   this.lottieConfig = {
+    //     path: "https://assets7.lottiefiles.com/packages/lf20_xldshlit.json",
+    //     renderer: 'canvas',
+    //     autoplay: true,
+    //     loop: true,
+    //     speed:1
+    // };
     
      }
 
 
   
   ngOnInit(): void {
-    this.nav.hide();
-    this.nav.showRegister();
+    this.facadeService.hide();
+    this.facadeService.showRegister();
+    this.facadeService.hideVerify();
     this.selectedValue=this.registerForm.controls['selectedCtrl'].value;
   }
 

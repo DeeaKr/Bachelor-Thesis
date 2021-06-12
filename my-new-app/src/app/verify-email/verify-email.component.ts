@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../services/auth-service.service';
+import { FacadeServiceService } from '../services/facade-service.service';
+import { NavbarService } from '../services/navbar.service';
 import { UtilsService } from '../services/utils.service';
 
 @Component({
@@ -10,14 +12,18 @@ import { UtilsService } from '../services/utils.service';
 })
 export class VerifyEmailComponent implements OnInit {
 
-  constructor(public authService: AuthServiceService, private utilis:UtilsService,private router:Router,) { }
+  constructor(private facadeService: FacadeServiceService,
+    public authService: AuthServiceService,private router:Router) { }
 
   ngOnInit(): void {
+    this.facadeService.showVerify();
+    this.facadeService.hide();
+    
     
   }
   sendVerif(){
-    this.authService.SendVerificationMail();
-    this.utilis.openSuccesSnackBar("Email Resent!")
+    this.facadeService.SendVerificationMail();
+    this.facadeService.openSuccesSnackBar("Email Resent!")
 
   }
   gotToLogin(){

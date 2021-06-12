@@ -8,21 +8,6 @@ import { NavbarService } from '../services/navbar.service';
 import { RegisterService } from '../services/register.service';
 import { UploadService } from '../services/upload.service';
 
-class Iterable{
-  [Symbol.iterator](){
-    let step=0;
-    const iterator={
-      next(){
-        step++;
-        if(step< 10){
-          return {value: step, done: false};
-        }
-        return{value:null, done: true};
-      }
-    };
-    return iterator;
-  }
-}
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -34,8 +19,7 @@ export class AboutComponent implements OnInit {
   numbers: any;
   differ: KeyValueDiffer<string, any>;
 
-  constructor(private nav: NavbarService, private uploadService: UploadService,
-     private registerService:RegisterService, private authService:AuthServiceService, private facadeService:FacadeServiceService,private differs: KeyValueDiffers) {
+  constructor( private facadeService:FacadeServiceService,private differs: KeyValueDiffers) {
        
        this.differ = this.differs.find({}).create();
         
@@ -51,15 +35,15 @@ export class AboutComponent implements OnInit {
       });
     }
   }
-  numberInTop:any;
+  
   inTop:boolean=false;
   stringObject: PhotoResult = new PhotoResult;
   serverData: JSON | undefined;
   stringJson: any;
   places: Array<Number> = [];
   robot:string="";
-  likes:number=0;
-  liked:boolean=false;
+  // likes:number=0;
+  // liked:boolean=false;
 
   ngOnInit(): void {
     let user=JSON.parse(localStorage.getItem('user') || '{}');
@@ -76,10 +60,10 @@ export class AboutComponent implements OnInit {
 
     //this.uploadService.getTop()
     //design pattern observer
-    if(this.liked==true){
-      this.likes+=1;
-      this.liked=false;
-    }
+    // if(this.liked==true){
+    //   this.likes+=1;
+    //   this.liked=false;
+    // }
     // this.stringObject.emails.forEach((element: string | null) => {
       //   if (element== this.registerService.getEmail()){
       //       this.inTop=true;
@@ -132,9 +116,9 @@ export class AboutComponent implements OnInit {
   });
   }
 
-  like(){
-    this.liked=true;
-    this.ngOnInit();
-  }
+  // like(){
+  //   this.liked=true;
+  //   this.ngOnInit();
+  // }
 
 }

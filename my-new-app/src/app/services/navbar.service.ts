@@ -7,9 +7,12 @@ export class NavbarService {
   title:string='';
   visible:boolean;
   register:boolean;
+  verify:boolean;
   constructor() { 
     this.register=false;
-    this.visible=false;}
+    this.visible=false;
+    this.verify=false;
+  }
   hide():void{
     this.visible=false;
   }
@@ -18,6 +21,12 @@ export class NavbarService {
   }
   hideRegister():void{
     this.register=false;
+  }
+  hideVerify():void{
+    this.verify=false;
+  }
+  showVerify():void{
+    this.verify=true;
   }
   showRegister():void{
     this.register=true;

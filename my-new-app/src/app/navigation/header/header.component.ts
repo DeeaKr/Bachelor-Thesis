@@ -7,6 +7,7 @@ import { RegisterService } from 'src/app/services/register.service';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { auth } from 'firebase';
 import { Observable } from 'rxjs';
+import { FacadeServiceService } from 'src/app/services/facade-service.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -25,16 +26,15 @@ export class HeaderComponent implements OnInit, OnChanges {
     public location: Location,
     public router: Router,
     public nav: NavbarService,
-    public uploadService: UploadService,
-    private registerService:RegisterService,
-    private authService:AuthServiceService
+    private facadaService:FacadeServiceService,
+    
   ) {
     router.events.subscribe((val) => {
       this.route = location.path();
     });
-    this.LoginStatus$ = this.authService.isLoggedInUser;
+    this.LoginStatus$ = this.facadaService.isLoggedInUser;
 
-    this.email$ = this.authService.getEmailObs;
+    this.email$ = this.facadaService.getEmailObs;
   }
  
   ngOnInit(): void {
@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit, OnChanges {
         console.log(val);
         if(val!=null){
    
-          this.uploadService.getDisplayName(val).subscribe(
+          this.facadaService.getDisplayName(val).subscribe(
             res=>{
               console.log(res);
               this.name=String(res);
@@ -69,7 +69,7 @@ export class HeaderComponent implements OnInit, OnChanges {
         console.log(val);
         if(val!=null){
    
-          this.uploadService.getDisplayName(val).subscribe(
+          this.facadaService.getDisplayName(val).subscribe(
             res=>{
               console.log(res);
               this.name=String(res);
@@ -84,7 +84,7 @@ export class HeaderComponent implements OnInit, OnChanges {
     this.sidenavToggle.emit();
   }
   deleteGotoLogin(){
-    this.authService.SignOut();
+    this.facadaService.SignOut();
   }
 
 }

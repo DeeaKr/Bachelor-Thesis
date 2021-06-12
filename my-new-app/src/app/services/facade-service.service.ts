@@ -58,6 +58,13 @@ export class FacadeServiceService {
   SendVerificationMail(){
     return this.authService.SendVerificationMail();
   }
+  get isLoggedInUser(){
+    return this.authService.isLoggedInUser;
+  }
+  get getEmailObs(){
+    return this.authService.getEmailObs;
+  }
+
   getRobot(email:any){
     return this.uploadService.getRobot(email);
   }
@@ -72,6 +79,9 @@ export class FacadeServiceService {
   getExamples(){
     return this.uploadService.getExamples();
   }
+  onUpload(file:File,email:any){
+    return this.uploadService.onUpload(file,email);
+  }
 
   hide(){
     return this.navService.hide();
@@ -79,10 +89,24 @@ export class FacadeServiceService {
   show(){
     return this.navService.show();
   }
-
-  
-
+  hideVerify(){
+    return this.navService.hideVerify();
+  }
+  showVerify(){
+    return this.navService.showVerify();
+  }
+showRegister(){
+  return this.navService.showRegister();
+}
   hideRegister(){
     return this.navService.hideRegister();
   }
+
+  openFailSnackBar(message: string) {
+    return this.utilisService.openFailSnackBar(message);
+  }
+  openSuccesSnackBar(message: string) {
+    return this.utilisService.openSuccesSnackBar(message);
+  }
+
 }
