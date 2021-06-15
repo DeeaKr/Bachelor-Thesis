@@ -99,9 +99,6 @@ export class AuthServiceService {
         this.utilsService.openFailSnackBar(error.message);
       })
   }
-  // getEmail(){
-  //   return this.userData.email;
-  // }
 
   // Send email verfificaiton when new user sign up
   SendVerificationMail() {
@@ -114,16 +111,7 @@ export class AuthServiceService {
     
   }
   return null;
-  //  (): Promise<void> =>
-  // this.afAuth.auth.currentUser  
-  //   ? this.afAuth.auth.currentUser .sendEmailVerification().then(()=>{
-  //     this.router.navigate(['verify-email-address']);
-  //   })
-  //   : Promise.resolve()
-    // return this.afAuth.auth.currentUser.sendEmailVerification()
-    // .then(() => {
-    //   this.router.navigate(['verify-email-address']);
-    // })
+
   }
 
   get isLoggedIn(): boolean {

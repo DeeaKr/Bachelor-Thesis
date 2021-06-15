@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar id="navigationBar" color="primary">
     <div fxHide.gt-xs>
         <button mat-icon-button (click)="onToggleSidenav()">
             <mat-icon>menu</mat-icon>
@@ -33,14 +33,14 @@
                 <a routerLink="/about">About</a> -->
             <mat-nav-list class="list-horizontal" fxLayout fxLayoutGap="200px">
 
-                <a mat-list-item routerLink="/examples"
+                <a mat-list-item routerLink="/examples" id="examplesNav"
                     [ngStyle]="{'color':route === '/examples' ? 'white' : '#000000' }">
                     <mat-icon>photo_camera</mat-icon> <span class="nav-caption">Examples</span>
                 </a>
                 <a mat-list-item routerLink="/home" [ngStyle]="{'color':route === '/home' ? 'white' : '#000000' }">
                     <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
                 </a>
-                <a mat-list-item routerLink="/about" [ngStyle]="{'color':route === '/about' ? 'white' : '#000000' }">
+                <a mat-list-item routerLink="/about" [ngStyle]="{'color':route === '/about' ? 'white' : '#000000' }" id="top10Nav">
                     <mat-icon>auto_awesome</mat-icon><span class="nav-caption">Top Photos</span>
                 </a>
             </mat-nav-list>

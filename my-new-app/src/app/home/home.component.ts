@@ -9,6 +9,7 @@ import { AuthServiceService } from '../services/auth-service.service';
 import { FacadeServiceService } from '../services/facade-service.service';
 import { UtilsService } from '../services/utils.service';
 
+
 export interface Robot {
   value: string;
   viewValue: string;
@@ -72,6 +73,7 @@ export class HomeComponent implements OnInit {
   name:string='';
   robot:string='';
   email:any;
+  spinning:boolean=false;
   constructor( public router: Router
     ,private facadeService:FacadeServiceService) { }
   // stringObject: PhotoResult = new PhotoResult;
@@ -105,10 +107,12 @@ export class HomeComponent implements OnInit {
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) => {
       this.hide=true;
-      
+      this.spinning=true;
       this.facadeService.onUpload(files[0],this.email).subscribe(
         res=>
         {
+          this.spinning=false;
+         
           var r=Number(res);
           this.result=Number(res);
           if(r>=0.5){
