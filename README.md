@@ -1,1 +1,1 @@
-# Front-end-Bachelor-Thesis
+# Bachelor-Thesis
